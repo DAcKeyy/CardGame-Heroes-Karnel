@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject>CardGame_Heroes.Kernel.Terminal.Program</StartupObject>
+    <Authors>Github Communty</Authors>
+    <Product>CardGame Kernel Terminal</Product>
+    <Version>0.1.0</Version>
+    <Description>Game terminal for managing game core in runtime or other ingame manipulations</Description>
+    <Copyright>MIT License</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CardGame_Heroes.Kernel\CardGame_Heroes.Kernel.csproj" />
+    <ProjectReference Include="..\CardGame_Heroes.Network\CardGame_Heroes.Network.csproj" />
+    <ProjectReference Include="..\LeoECS\Leopotam.Ecs.csproj" />
+  </ItemGroup>
+
+</Project>
