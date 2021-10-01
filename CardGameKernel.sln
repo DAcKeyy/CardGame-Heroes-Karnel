@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardGame_Heroes.Kernel", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardGame_Heroes.Kernel.Terminal", "CardGame_Heroes.Kernel.Terminal\CardGame_Heroes.Kernel.Terminal.csproj", "{3F87A3A1-3021-40FB-B5AA-259413B32997}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopotam.Ecs", "LeoECS\Leopotam.Ecs.csproj", "{CCBF201C-06C0-431C-A01B-BD7BBDE52C76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopotam.Ecs", "ecs\Leopotam.Ecs.csproj", "{CCBF201C-06C0-431C-A01B-BD7BBDE52C76}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGame_Heroes.Network", "CardGame_Heroes.Network\CardGame_Heroes.Network.csproj", "{EEAE2F6A-517B-460B-9E86-34152D812C1C}"
 EndProject
