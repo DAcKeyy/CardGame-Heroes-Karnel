@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CardGame_Heroes.Network\CardGame_Heroes.Network.csproj" />
-    <ProjectReference Include="..\LeoECS\Leopotam.Ecs.csproj" />
+    <ProjectReference Include="..\ecs\Leopotam.Ecs.csproj" />
   </ItemGroup>
 
   <ItemGroup>

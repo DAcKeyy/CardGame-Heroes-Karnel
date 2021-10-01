@@ -15,7 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CardGame_Heroes.Kernel\CardGame_Heroes.Kernel.csproj" />
     <ProjectReference Include="..\CardGame_Heroes.Network\CardGame_Heroes.Network.csproj" />
-    <ProjectReference Include="..\LeoECS\Leopotam.Ecs.csproj" />
+    <ProjectReference Include="..\ecs\Leopotam.Ecs.csproj" />
   </ItemGroup>
 
 </Project>
