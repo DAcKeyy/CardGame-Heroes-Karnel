@@ -16,7 +16,6 @@ namespace CardGame_Heroes.Kernel.Terminal
         {
             ConsoleExtention.WriteColor($"♥Card Game Server Console Application♥\n", ConsoleColor.DarkGreen);
             ConsoleExtention.WriteColor($"Version ♥{Assembly.GetExecutingAssembly().GetName().Version}♥\n\n", ConsoleColor.DarkGreen);
-            game = new Game();
             ReadCommandLine();
         }
 
@@ -40,7 +39,8 @@ namespace CardGame_Heroes.Kernel.Terminal
                             ConsoleExtention.WriteColor($"♥Вы забыли добавить информацию о игроках!♥\n", ConsoleColor.Red);
                             ConsoleExtention.WriteColor($"Для добавления игроков введите команду ♥/addnp♥ или ♥/addNewPlayer♥\n", ConsoleColor.Yellow);
                         }
-                        game.Start(playerComponents.ToArray());
+                        game = new Game(playerComponents.ToArray());
+                        game.Start();
                         break;
                     case "/addnp":
                     case "/addNewPlayer":
@@ -78,7 +78,7 @@ namespace CardGame_Heroes.Kernel.Terminal
                                 if (card.Type != null) ConsoleExtention.WriteColor($"Тип : ♥{card.Type}♥\n", ConsoleColor.Yellow);
                                 if (card.Class != null) ConsoleExtention.WriteColor($"Класс : ♥{card.Class}♥\n", ConsoleColor.Yellow);
                                 if (card.Elements != null) ConsoleExtention.WriteColor($"Стихия : ♥{card.Elements}♥\n", ConsoleColor.Yellow);
-                                if (card.Cost != null) ConsoleExtention.WriteColor($"Стоимсоть : ♥{card.Cost}♥\n", ConsoleColor.Yellow);
+                                if (card.Cost != null) ConsoleExtention.WriteColor($"Стоимость : ♥{card.Cost}♥\n", ConsoleColor.Yellow);
                                 if (card.Health != null) ConsoleExtention.WriteColor($"Здоровье : ♥{card.Health}♥\n", ConsoleColor.Yellow);
                                 if (card.Attack != null) ConsoleExtention.WriteColor($"Атака : ♥{card.Attack}♥\n", ConsoleColor.Yellow);
                                 if (string.IsNullOrEmpty(card.Text) != true) ConsoleExtention.WriteColor($"Описание : ♥{card.Text}♥\n", ConsoleColor.Yellow);

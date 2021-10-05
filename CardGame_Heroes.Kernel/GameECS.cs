@@ -1,6 +1,6 @@
 ﻿using CardGame_Heroes.Kernel.Components;
-using System.Collections.Generic;
 using Leopotam.Ecs;
+using CardGame_Heroes.Kernel.Logs;
 
 namespace CardGame_Heroes.Kernel
 {
@@ -19,6 +19,8 @@ namespace CardGame_Heroes.Kernel
 
         public void InitSystems()
         {
+            Logger.WriteLog(new Snapshot($"Initiate Systems.."));
+
             for (int iterator = 0; iterator < playersData.Length; iterator++)
                 Players[iterator] =  PlayerCreator.CreatePlayerEntity(_world, 
                                             playersData[iterator].ID, 

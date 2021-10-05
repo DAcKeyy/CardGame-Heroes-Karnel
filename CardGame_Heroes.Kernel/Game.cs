@@ -1,4 +1,5 @@
 ﻿using CardGame_Heroes.Kernel.Components;
+using CardGame_Heroes.Kernel.Logs;
 using System;
 
 namespace CardGame_Heroes.Kernel
@@ -18,6 +19,7 @@ namespace CardGame_Heroes.Kernel
 
         public void Start()
         {
+            Logger.WriteLog(new Snapshot("Game started"));
             ECSystem = new GameECS(players);
             ECSystem.InitSystems();
         }
