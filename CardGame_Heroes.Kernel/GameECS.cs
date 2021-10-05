@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace CardGame_Heroes.Kernel
 {
-    public class GameECS : IEcsInitSystem
+    public class GameECS
     {
         public EcsWorld _world;
         public EcsSystems _systems;
@@ -17,24 +17,24 @@ namespace CardGame_Heroes.Kernel
             Players = new EcsEntity[playersData.Length];
         }
 
-        public void Init()
+        public void InitSystems()
         {
             for (int iterator = 0; iterator < playersData.Length; iterator++)
-            {
-                Players[iterator] = 
-                    PlayerCreator.CreatePlayerEntity(_world, 
-                    playersData[iterator].ID, 
-                    playersData[iterator].Nickname, 
-                    playersData[iterator].Cards);       
-            }
+                Players[iterator] =  PlayerCreator.CreatePlayerEntity(_world, 
+                                            playersData[iterator].ID, 
+                                            playersData[iterator].Nickname, 
+                                            playersData[iterator].Cards);       
+            
+
+
         }
 
-        public void UpdateLoop()
+        public void UpdateSystems()
         {
             _systems?.Run();
         }
 
-        public void Destroy()
+        public void DestroySystems()
         {
             if(_systems != null)
             {
