@@ -26,8 +26,4 @@
     <ProjectReference Include="..\ecs\Leopotam.Ecs.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Systems\" />
-  </ItemGroup>
-
 </Project>

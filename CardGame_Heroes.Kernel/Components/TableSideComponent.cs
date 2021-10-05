@@ -3,13 +3,8 @@ using System.Collections.Generic;
 
 namespace CardGame_Heroes.Kernel.Components
 {
-    public struct TableSideComponent
+    public struct TableSideComponent : ICardFieldComponent
     {
-        public TableSideComponent(List<Card> cards)
-        {
-            Cards = cards;
-        }
-
         public List<Card> Cards { get; set; }
     }
 }

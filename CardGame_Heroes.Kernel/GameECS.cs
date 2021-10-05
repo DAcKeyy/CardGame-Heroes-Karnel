@@ -21,24 +21,11 @@ namespace CardGame_Heroes.Kernel
         {
             for (int iterator = 0; iterator < playersData.Length; iterator++)
             {
-                Players[iterator] = _world.NewEntity();
-
-                ref DeckComponent playerDeck = ref Players[iterator].Get<DeckComponent>();
-                playerDeck.Deck = new List<Cards.Card>(playersData[iterator].Cards);
-
-                ref TableSideComponent playerSide = ref Players[iterator].Get<TableSideComponent>();
-                playerSide.Cards = new List<Cards.Card>();
-
-                ref GravyardComponent playerGravyard = ref Players[iterator].Get<GravyardComponent>();
-                playerGravyard.Gravyard = new List<Cards.Card>();
-
-                ref HandComponent playerHand = ref Players[iterator].Get<HandComponent>();
-                playerHand.Hand = new List<Cards.Card>();
-
-                ref PlayerComponent playerData = ref Players[iterator].Get<PlayerComponent>();
-                playerData.ID = playersData[iterator].ID;
-                playerData.Nickname = playersData[iterator].Nickname;
-                playerData.Cards = playersData[iterator].Cards;                
+                Players[iterator] = 
+                    PlayerCreator.CreatePlayerEntity(_world, 
+                    playersData[iterator].ID, 
+                    playersData[iterator].Nickname, 
+                    playersData[iterator].Cards);       
             }
         }
 

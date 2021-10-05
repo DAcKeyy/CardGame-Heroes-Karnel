@@ -1,4 +1,5 @@
 ﻿using CardGame_Heroes.Kernel.Cards;
+using Leopotam.Ecs;
 
 namespace CardGame_Heroes.Kernel.Components
 {

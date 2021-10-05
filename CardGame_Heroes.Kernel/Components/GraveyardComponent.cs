@@ -3,13 +3,8 @@ using System.Collections.Generic;
 
 namespace CardGame_Heroes.Kernel.Components
 {
-    public struct GravyardComponent
+    public struct GravyardComponent : ICardFieldComponent
     {
-        public GravyardComponent(List<Card> gravyard)
-        {
-            Gravyard = gravyard;
-        }
-
-        public List<Card> Gravyard { get; set; }
+        public List<Card> Cards { get; set; }
     }
 }
