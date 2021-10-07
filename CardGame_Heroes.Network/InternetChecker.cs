@@ -4,7 +4,7 @@ namespace CardGame_Heroes.Network
 {
     public class InternetChecker
     {
-        public static bool PingGoogleDotCom()
+        public bool PingGoogleDotCom()
         {
             return IsConnectedToInternet("https://www.google.com/");
         }

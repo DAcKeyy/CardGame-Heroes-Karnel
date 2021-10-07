@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CardGame_Heroes.Kernel.Components
 {
-    public class PlayerStateComponent
+    public struct PlayerStateComponent
     {
 
     }

@@ -9,9 +9,9 @@ namespace CardGame_Heroes.Network
 
         public RandomOrg()
         {
-            if (new InternetChecker().PingGoogleDotCom())
-                randomOrgClient = new RandomOrgClient(NetconfigReader.ReadConfig().randomOrg.apiKey);
-            else throw new Exception("Нету соединения с интерентом");
+            if (!new InternetChecker().PingGoogleDotCom())
+                throw new Exception("Нету соединения с интерентом");
+            else randomOrgClient = new RandomOrgClient(NetconfigReader.ReadConfig().randomOrg.apiKey);
         }
     }
 }
