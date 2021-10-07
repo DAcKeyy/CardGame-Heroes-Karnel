@@ -1,0 +1,7 @@
+{
+    "times": {
+        "mulligan": 40,
+        "playerTurn": 15,
+        "playerTurnMultiplier": 2
+    }
+}

@@ -10,7 +10,7 @@ namespace CardGame_Heroes.Kernel.Terminal
     static class Program
     {
         static Game game;
-        static List<PlayerComponent> playerComponents = new List<PlayerComponent>(); 
+        static List<PlayerData> playerComponents = new List<PlayerData>(); 
 
         static void Main(string[] args)
         {
@@ -70,9 +70,9 @@ namespace CardGame_Heroes.Kernel.Terminal
                         ConsoleExtention.WriteColor($"♥Информация о игроках:♥\n", ConsoleColor.Yellow);
                         foreach (var player in game.ECSystem.Players)
                         {
-                            ConsoleExtention.WriteColor($"Никнейм игрока- ♥{player.Get<PlayerComponent>().Cards}♥\n", ConsoleColor.Yellow);
-                            ConsoleExtention.WriteColor($"Карт в колоде ♥{player.Get<PlayerComponent>().Cards.Length}♥:\n", ConsoleColor.Yellow);
-                            foreach (var card in player.Get<PlayerComponent>().Cards)
+                            ConsoleExtention.WriteColor($"Никнейм игрока- ♥{player.Get<PlayerData>().Cards}♥\n", ConsoleColor.Yellow);
+                            ConsoleExtention.WriteColor($"Карт в колоде ♥{player.Get<PlayerData>().Cards.Length}♥:\n", ConsoleColor.Yellow);
+                            foreach (var card in player.Get<PlayerData>().Cards)
                             {
                                 if (string.IsNullOrEmpty(card.Name) != true) ConsoleExtention.WriteColor($"Название карты: ♥{card.Name}♥\n", ConsoleColor.Green);
                                 if (card.Type != null) ConsoleExtention.WriteColor($"Тип : ♥{card.Type}♥\n", ConsoleColor.Yellow);

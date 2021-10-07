@@ -6,13 +6,12 @@ namespace CardGame_Heroes.Kernel.Random
 {
     public class Randomizer
     {
-        RandomOrg randomOrg = new RandomOrg();
+        readonly RandomOrg randomOrg = new();
 
         public enum Coin {
             Obverse,
             Reverse
         }
-
 
         /// <summary>
         /// Метод перестановки элементов в заданном List
@@ -22,16 +21,16 @@ namespace CardGame_Heroes.Kernel.Random
         /// <returns>Возвращает отсортированный List обезянним методом</returns>
         async public Task<List<T>> ShuffleList<T>(List<T> list)
         {
-            List<T> shuffledList = new List<T>();
+            List<T> shuffledList = new();
 
             if (randomOrg.isConnectingToGoogle == false)//Псведослучайное если нет соединения с рандом.орг
             {
-                System.Random sharpRandom = new System.Random();
-                List<int> tempRandomList = new List<int>(); //пустой лист для заполениня
+                System.Random sharpRandom = new();
+                List<int> tempRandomList = new(); //пустой лист для заполениня
 
                 Task<List<int>> fillList_With_Rundom_int_Task = Task.Run(() => //асинхронная задача для абуза Random.Next 
                 {
-                    List<int> tempRandomList = new List<int>();
+                    List<int> tempRandomList = new();
                     while (tempRandomList.Count != list.Count) //я ебал рот майкрософт
                     {
                         int randomSharpNumber = sharpRandom.Next(0, list.Count - 1);
@@ -66,7 +65,7 @@ namespace CardGame_Heroes.Kernel.Random
         {
             if (randomOrg.isConnectingToGoogle == false) //если нет инета
             {
-                System.Random sharpRandom = new System.Random();
+                System.Random sharpRandom = new();
                 return sharpRandom.Next(min,max);
             }
             else
@@ -84,7 +83,7 @@ namespace CardGame_Heroes.Kernel.Random
         {
             if(randomOrg.isConnectingToGoogle == false) //если нет инета
             {
-                System.Random sharpRandom = new System.Random();
+                System.Random sharpRandom = new();
                 if (sharpRandom.Next(0, 1) is 0) return Coin.Obverse;
                 else return Coin.Reverse;
             }

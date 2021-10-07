@@ -2,13 +2,13 @@
 
 namespace CardGame_Heroes.Kernel.Components
 {
-    public struct PlayerComponent
+    public struct PlayerData
     {
         public uint ID;
         public string Nickname;
         public Card[] Cards;
 
-        public PlayerComponent(uint iD, string nickname, Card[] cards)
+        public PlayerData(uint iD, string nickname, Card[] cards)
         {
             ID = iD;
             Nickname = nickname;

@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using CardGame_Heroes.Kernel.Cards.Enums;
+using System;
 
 namespace CardGame_Heroes.Kernel.Cards
 {
+    [Serializable]
     public struct Card
     {
         public uint Id { get; set; }

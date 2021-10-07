@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardGame_Heroes.Kernel.Term
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopotam.Ecs", "ecs\Leopotam.Ecs.csproj", "{CCBF201C-06C0-431C-A01B-BD7BBDE52C76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGame_Heroes.Network", "CardGame_Heroes.Network\CardGame_Heroes.Network.csproj", "{EEAE2F6A-517B-460B-9E86-34152D812C1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardGame_Heroes.Network", "CardGame_Heroes.Network\CardGame_Heroes.Network.csproj", "{EEAE2F6A-517B-460B-9E86-34152D812C1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A0450837-D986-4F5B-A246-341ECC7FACEB}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

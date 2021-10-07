@@ -1,4 +1,5 @@
 ﻿using CardGame_Heroes.Kernel.Components;
+using CardGame_Heroes.Kernel.Systems;
 using Leopotam.Ecs;
 using CardGame_Heroes.Kernel.Logs;
 
@@ -6,44 +7,44 @@ namespace CardGame_Heroes.Kernel
 {
     public class GameECS
     {
-        public EcsWorld _world;
-        public EcsSystems _systems;
-        public EcsEntity[] Players;
-        private PlayerComponent[] playersData { get; }
+        public EcsWorld world;
+        public EcsSystems systems;
 
-        public GameECS(PlayerComponent[] playersData)
+        public EcsEntity[] Players;
+        private PlayerData[] playersData { get; }
+
+        public GameECS(PlayerData[] playersData)
         {
             this.playersData = playersData;
-            Players = new EcsEntity[playersData.Length];
         }
 
         public void InitSystems()
         {
             Logger.WriteLog(new Snapshot($"Initiate Systems.."));
 
-            for (int iterator = 0; iterator < playersData.Length; iterator++)
-                Players[iterator] =  PlayerCreator.CreatePlayerEntity(_world, 
-                                            playersData[iterator].ID, 
-                                            playersData[iterator].Nickname, 
-                                            playersData[iterator].Cards);       
-            
+            var systems = new EcsSystems(world);
 
+            systems.Add(new GameInitSystem()).Inject(playersData);
+            systems.Add(new CardFiledSystem());
+            systems.Add(new TablesideSystem());
 
+            systems.Init();
+            systems.Run();
         }
 
         public void UpdateSystems()
         {
-            _systems?.Run();
+            systems?.Run();
         }
 
         public void DestroySystems()
         {
-            if(_systems != null)
+            if(systems != null)
             {
-                _systems.Destroy();
-                _systems = null;
-                _world.Destroy();
-                _world = null;
+                systems.Destroy();
+                systems = null;
+                world.Destroy();
+                world = null;
             }
         }
     }

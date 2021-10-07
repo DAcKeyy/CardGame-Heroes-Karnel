@@ -22,6 +22,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CardGame_Heroes.Network\CardGame_Heroes.Network.csproj" />
     <ProjectReference Include="..\ecs\Leopotam.Ecs.csproj" />
   </ItemGroup>

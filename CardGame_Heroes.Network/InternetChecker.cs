@@ -4,15 +4,15 @@ namespace CardGame_Heroes.Network
 {
     public class InternetChecker
     {
-        public bool PingGoogleDotCom()
+        public static bool PingGoogleDotCom()
         {
             return IsConnectedToInternet("https://www.google.com/");
         }
 
-        bool IsConnectedToInternet(string host)
+        static bool IsConnectedToInternet(string host)
         {
             bool result = false;
-            Ping p = new Ping();
+            Ping p = new();
 
             try
             {
