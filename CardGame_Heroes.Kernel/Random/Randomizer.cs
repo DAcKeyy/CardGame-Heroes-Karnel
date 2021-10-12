@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace CardGame_Heroes.Kernel.Random
 {
-    public class Randomizer
+    public static class Randomizer
     {
-        readonly RandomOrg randomOrg = new();
+        readonly static RandomOrg randomOrg = new();
 
         public enum Coin {
             Obverse,
@@ -19,7 +19,7 @@ namespace CardGame_Heroes.Kernel.Random
         /// <typeparam name="T">Шаблон любого объекта C#</typeparam>
         /// <param name="list">Цель перетосовки</param>
         /// <returns>Возвращает отсортированный List обезянним методом</returns>
-        async public Task<List<T>> ShuffleList<T>(List<T> list)
+        async public static Task<List<T>> ShuffleList<T>(List<T> list)
         {
             List<T> shuffledList = new();
 
@@ -61,7 +61,7 @@ namespace CardGame_Heroes.Kernel.Random
         /// <param name="min">Минимум в диапозоне генерации</param>
         /// <param name="max">Максимум в диапозоне генерации</param>
         /// <returns>Возвращает случайное число в заданом диапазоне</returns>
-        async public Task<int> RandomInt(int min, int max)
+        async public static Task<int> RandomInt(int min, int max)
         {
             if (randomOrg.isConnectingToGoogle == false) //если нет инета
             {
@@ -79,7 +79,7 @@ namespace CardGame_Heroes.Kernel.Random
         /// Метод подброса монетки
         /// </summary>
         /// <returns>Возвращает монетку Coin - 0 или 1</returns>
-        async public Task<Coin> CoinFlip()
+        async public static Task<Coin> CoinFlip()
         {
             if(randomOrg.isConnectingToGoogle == false) //если нет инета
             {

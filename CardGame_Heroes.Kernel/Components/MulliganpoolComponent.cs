@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 namespace CardGame_Heroes.Kernel.Components
 {
-    public interface ICardFieldComponent
+    public struct MulliganpoolComponent
     {
-        public List<Card> Cards { get; set; }
+        public List<Card> Pool;
+        public bool isConfirmed;
     }
 }

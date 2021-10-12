@@ -1,6 +1,6 @@
 ﻿namespace CardGame_Heroes.Kernel.Components
 {
-    public struct InherentComponent
+    public struct OwnerComponent
     {
         public PlayerData ownerData;
     }

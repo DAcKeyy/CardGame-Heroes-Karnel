@@ -7,6 +7,7 @@ namespace CardGame_Heroes.Kernel.Components
     {
         public Card CardInfo {  get; set; }
         public int Health {  get; set; }
+
         public Card EquippedNeckless
         {
             get => equippedNeckless;

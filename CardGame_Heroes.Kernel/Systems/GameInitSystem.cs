@@ -23,62 +23,64 @@ namespace CardGame_Heroes.Kernel.Systems
                 addTablesideComponentToEntity(_world.NewEntity(), playerData);
                 addHeroComponentToEntity(_world.NewEntity(), playerData);
                 addPlayerComponentToEntity(_world.NewEntity(), playerData);
+                addManapoolComponentToEntity(_world.NewEntity(), playerData);
 
                 Logger.WriteLog(new Snapshot($"Player {playerData.Nickname} Entitys assembled"));
             }
         }
 
 
-        private static void addHandComponentToEntity(EcsEntity hand, PlayerData data)
+        private static void addHandComponentToEntity(EcsEntity handEntity, PlayerData data)
         {
-            ref HandComponent handComponent = ref hand.Get<HandComponent>();
+            ref HandComponent handComponent = ref handEntity.Get<HandComponent>();
             handComponent.Cards = new List<Card>();
-            Logger.WriteLog(new Snapshot($"{handComponent.GetType().Name} attached to {hand} EcsEntity"));
+            Logger.WriteLog(new Snapshot($"{handComponent.GetType().Name} attached to {handEntity} EcsEntity"));
 
-            ref InherentComponent inherentComponent = ref hand.Get<InherentComponent>();
-            inherentComponent.ownerData = data;
-            Logger.WriteLog(new Snapshot($"{inherentComponent.GetType().Name} attached to {hand} EcsEntity"));
+            ref OwnerComponent ownerComponent = ref handEntity.Get<OwnerComponent>();
+            ownerComponent.ownerData = data;
+            Logger.WriteLog(new Snapshot($"{ownerComponent.GetType().Name} attached to {handEntity} EcsEntity"));
         }
 
-        private static void addDeckComponentToEntity(EcsEntity deck, PlayerData data)
+        private static void addDeckComponentToEntity(EcsEntity deckEntity, PlayerData data)
         {
-            ref DeckComponent deckComponent = ref deck.Get<DeckComponent>();
-            Logger.WriteLog(new Snapshot($"{deckComponent.GetType().Name} attached to {deck} EcsEntity"));
+            ref DeckComponent deckComponent = ref deckEntity.Get<DeckComponent>();
+            Logger.WriteLog(new Snapshot($"{deckComponent.GetType().Name} attached to {deckEntity} EcsEntity"));
 
-            ref InherentComponent inherentComponent = ref deck.Get<InherentComponent>();
-            inherentComponent.ownerData = data;
-            Logger.WriteLog(new Snapshot($"{inherentComponent.GetType().Name} attached to {deck} EcsEntity"));
+            ref OwnerComponent ownerComponent = ref deckEntity.Get<OwnerComponent>();
+            ownerComponent.ownerData = data;
+            Logger.WriteLog(new Snapshot($"{ownerComponent.GetType().Name} attached to {deckEntity} EcsEntity"));
 
-            deckComponent.Cards = new List<Cards.Card>(data.Cards);
+            deckComponent.Cards = new List<Card>(data.Cards);
             deckComponent.Cards.RemoveAll(card => card.Type == Cards.Enums.CardType.Герой);
-            Logger.WriteLog(new Snapshot($"Deck is.."));
-            foreach (var card in deckComponent.Cards)
-                Logger.WriteLog(new Snapshot($"{card.Name}"));
+
+            string log = $"Deck is..\n";
+            foreach (var card in deckComponent.Cards) log += $"{card.Name}\n";
+            Logger.WriteLog(new Snapshot(log));
         }
 
-        private static void addGraveyardComponentToEntity(EcsEntity graveyard, PlayerData data)
+        private static void addGraveyardComponentToEntity(EcsEntity graveyardEntity, PlayerData data)
         {
-            ref GravyardComponent graveyardComponent = ref graveyard.Get<GravyardComponent>();
-            graveyardComponent.Cards = new List<Cards.Card>();
-            Logger.WriteLog(new Snapshot($"{graveyardComponent.GetType().Name} attached to {graveyard} EcsEntity"));
+            ref GravyardComponent graveyardComponent = ref graveyardEntity.Get<GravyardComponent>();
+            graveyardComponent.Cards = new List<Card>();
+            Logger.WriteLog(new Snapshot($"{graveyardComponent.GetType().Name} attached to {graveyardEntity} EcsEntity"));
 
-            ref InherentComponent inherentComponent = ref graveyard.Get<InherentComponent>();
-            inherentComponent.ownerData = data;
-            Logger.WriteLog(new Snapshot($"{inherentComponent.GetType().Name} attached to {graveyard} EcsEntity"));
+            ref OwnerComponent ownerComponent = ref graveyardEntity.Get<OwnerComponent>();
+            ownerComponent.ownerData = data;
+            Logger.WriteLog(new Snapshot($"{ownerComponent.GetType().Name} attached to {graveyardEntity} EcsEntity"));
         }
 
-        private static void addTablesideComponentToEntity(EcsEntity tableside, PlayerData data)
+        private static void addTablesideComponentToEntity(EcsEntity tablesideEntity, PlayerData data)
         {
-            ref TablesideComponent tablediseComponent = ref tableside.Get<TablesideComponent>();
-            tablediseComponent.Cards = new List<Cards.Card>();
-            Logger.WriteLog(new Snapshot($"{tablediseComponent.GetType().Name} attached to {tableside} EcsEntity"));
+            ref TablesideComponent tablediseComponent = ref tablesideEntity.Get<TablesideComponent>();
+            tablediseComponent.Cards = new List<Card>();
+            Logger.WriteLog(new Snapshot($"{tablediseComponent.GetType().Name} attached to {tablesideEntity} EcsEntity"));
 
-            ref InherentComponent inherentComponent = ref tableside.Get<InherentComponent>();
-            inherentComponent.ownerData = data;
-            Logger.WriteLog(new Snapshot($"{inherentComponent.GetType().Name} attached to {tableside} EcsEntity"));
+            ref OwnerComponent ownerComponent = ref tablesideEntity.Get<OwnerComponent>();
+            ownerComponent.ownerData = data;
+            Logger.WriteLog(new Snapshot($"{ownerComponent.GetType().Name} attached to {tablesideEntity} EcsEntity"));
         }
 
-        private static void addHeroComponentToEntity(EcsEntity hero, PlayerData data)
+        private static void addHeroComponentToEntity(EcsEntity heroEntity, PlayerData data)
         {
             List<Card> cards = new(data.Cards);
 
@@ -87,7 +89,7 @@ namespace CardGame_Heroes.Kernel.Systems
             if (heroesCards.Count == 0) throw new System.Exception($"В колоде нету карты типа {Cards.Enums.CardType.Герой}");
             if (heroesCards.Count > 1) throw new System.Exception("В колоде больше одного героя");
 
-            ref HeroComponent heroComponent = ref hero.Get<HeroComponent>();
+            ref HeroComponent heroComponent = ref heroEntity.Get<HeroComponent>();
             heroComponent.CardInfo = heroesCards[0];
             heroComponent.Health = (int)heroComponent.CardInfo.Health;
 
@@ -103,22 +105,35 @@ namespace CardGame_Heroes.Kernel.Systems
             {
                 Type = Cards.Enums.CardType.Null
             };
-            Logger.WriteLog(new Snapshot($"{heroComponent.GetType().Name} attached to {hero} EcsEntity"));
+            Logger.WriteLog(new Snapshot($"{heroComponent.GetType().Name} attached to {heroEntity} EcsEntity"));
 
-            ref InherentComponent inherentComponent = ref hero.Get<InherentComponent>();
-            inherentComponent.ownerData = data;
-            Logger.WriteLog(new Snapshot($"{inherentComponent.GetType().Name} attached to {hero} EcsEntity"));
+            ref OwnerComponent ownerComponent = ref heroEntity.Get<OwnerComponent>();
+            ownerComponent.ownerData = data;
+            Logger.WriteLog(new Snapshot($"{ownerComponent.GetType().Name} attached to {heroEntity} EcsEntity"));
         }
 
-        private static void addPlayerComponentToEntity(EcsEntity player, PlayerData data)
+        private static void addPlayerComponentToEntity(EcsEntity playerEntity, PlayerData data)
         {
-            ref PlayerStateComponent tablediseComponent = ref player.Get<PlayerStateComponent>();
-            //_tabledise.Cards = new List<Cards.Card>();
-            Logger.WriteLog(new Snapshot($"{tablediseComponent.GetType().Name} attached to {player} EcsEntity"));
+            ref PlayerStateComponent playerStateComponent = ref playerEntity.Get<PlayerStateComponent>();
+            //TODO: addPlayerComponentToEntity 
+            //
 
-            ref InherentComponent inherentComponent = ref player.Get<InherentComponent>();
-            inherentComponent.ownerData = data;
-            Logger.WriteLog(new Snapshot($"{inherentComponent.GetType().Name} attached to {player} EcsEntity"));
+            Logger.WriteLog(new Snapshot($"{playerStateComponent.GetType().Name} attached to {playerEntity} EcsEntity"));
+
+            ref OwnerComponent ownerComponent = ref playerEntity.Get<OwnerComponent>();
+            ownerComponent.ownerData = data;
+            Logger.WriteLog(new Snapshot($"{ownerComponent.GetType().Name} attached to {playerEntity} EcsEntity"));
+        }
+
+        private static void addManapoolComponentToEntity(EcsEntity manapoolEntity, PlayerData data)
+        {
+            ref ManapoolComponent manapoolComponent = ref manapoolEntity.Get<ManapoolComponent>();
+            manapoolComponent.Mana = 0;
+            Logger.WriteLog(new Snapshot($"{manapoolComponent.GetType().Name} attached to {manapoolEntity} EcsEntity"));
+
+            ref OwnerComponent ownerComponent = ref manapoolEntity.Get<OwnerComponent>();
+            ownerComponent.ownerData = data;
+            Logger.WriteLog(new Snapshot($"{ownerComponent.GetType().Name} attached to {manapoolEntity} EcsEntity"));
         }
     }
 }

@@ -6,7 +6,7 @@ namespace CardGame_Heroes.Network
     {
         public static NetConfigData ReadConfig()
         {
-            using StreamReader r = new("netconfig.json");
+            using StreamReader r = new(AppDomain.CurrentDomain.BaseDirectory + "netconfig.json");
             return JsonSerializer.Deserialize<NetConfigData>(r.ReadToEnd());
         }
 
@@ -14,7 +14,8 @@ namespace CardGame_Heroes.Network
         public struct NetConfigData
         {
             public DBData DBdata { get; }
-            public RandomOrg randomOrg { get; }
+            public RandomOrgData randomOrg { get; }
+            public TCPServerData TCPserver {  get; }
 
             [Serializable]
             public struct DBData
@@ -29,9 +30,15 @@ namespace CardGame_Heroes.Network
             }
 
             [Serializable]
-            public struct RandomOrg
+            public struct RandomOrgData
             {
                 public string apiKey { get; }
+            }
+
+            [Serializable]
+            public struct TCPServerData
+            {
+                public int port {  get; }
             }
         }
     }

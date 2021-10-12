@@ -25,11 +25,10 @@ namespace CardGame_Heroes.Kernel
             var systems = new EcsSystems(world);
 
             systems.Add(new GameInitSystem()).Inject(playersData);
-            systems.Add(new CardFiledSystem());
+            systems.Add(new MulliganSystem()).Inject(playersData);
             systems.Add(new TablesideSystem());
 
             systems.Init();
-            systems.Run();
         }
 
         public void UpdateSystems()

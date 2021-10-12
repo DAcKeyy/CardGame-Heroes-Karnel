@@ -6,6 +6,5 @@ namespace CardGame_Heroes.Kernel.Components
     public struct HandComponent : ICardFieldComponent
     {
         public List<Card> Cards { get; set; }
-
     }
 }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CardGame_Heroes.Kernel.Components
+﻿namespace CardGame_Heroes.Kernel.Components
 {
-    public struct PlayerStateComponent
+    public struct PlayerStateComponent : IPlayerState
     {
-
+        public PlayerStates PlayerState { get; set; }
+        public int MoveOrder {  get; set; }
     }
 }

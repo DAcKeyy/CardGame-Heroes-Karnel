@@ -8,7 +8,7 @@ namespace CardGame_Heroes.Kernel
     {
         public static ConfigData ReadConfig()
         {
-            using StreamReader r = new("config.json");
+            using StreamReader r = new(AppDomain.CurrentDomain.BaseDirectory + "/config.json");
                 return JsonSerializer.Deserialize<ConfigData>(r.ReadToEnd());
         }
 
@@ -16,6 +16,7 @@ namespace CardGame_Heroes.Kernel
         public struct ConfigData
         {
             public Times times {  get; }
+            public GameParams gameParams {  get; }  
 
             [Serializable]
             public struct Times
@@ -23,6 +24,12 @@ namespace CardGame_Heroes.Kernel
                 public float mulligan { get; }
                 public float playerTurn { get; }
                 public float playerTurnMultiplier { get; }
+            }
+
+            [Serializable]
+            public struct GameParams
+            {
+                public int mulliganCardsCount { get; }
             }
         }
     }
